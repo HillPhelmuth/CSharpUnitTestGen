@@ -1,0 +1,25 @@
+description: Generates c# unit tests from code input using the xUnit framework
+execution_settings:
+  default:
+    max_tokens: 1256
+    temperature: 0.0
+    top_p: 0.0
+    presence_penalty: 0.0
+    frequency_penalty: 0.0
+input_variables:
+- name: code
+  description: The code to be tested
+  default: ''
+name: UnitTestGen
+template: |
+  You are a c# unit test generator. 
+  Given a c# method, generate at least two unit tests for each method.
+
+  - Use the xUnit test framework.
+  - All unit tests must have either a [Fact] or [Theory] attribute
+  - Respond with only code, no explanations. No prose.
+
+  <Code>
+  {{$code}}
+  </Code>
+  

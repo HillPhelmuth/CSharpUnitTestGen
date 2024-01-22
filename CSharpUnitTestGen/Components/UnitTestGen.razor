@@ -1,0 +1,23 @@
+﻿<RadzenRow>
+    <RadzenColumn Size="5">
+        
+        <RadzenCard Style="height:80vh">
+            <RadzenTemplateForm Data="_codeInputForm" TItem="CodeInputForm" Submit="Submit">
+                <RadzenFormField Text="Code to test" Style="width:100%">
+                    <ChildContent>
+                        <RadzenTextArea Name="Input" @bind-Value=_codeInputForm.Code Style="width:100%;height:35rem"></RadzenTextArea>
+                    </ChildContent>
+                    <Helper>
+                        <RadzenRequiredValidator Component="Input" Text="Code required"></RadzenRequiredValidator>
+                    </Helper>
+                </RadzenFormField>
+                <RadzenButton ButtonType="ButtonType.Submit" Text="Generate Tests" IsBusy=_isBusy BusyText="Generating..."></RadzenButton>
+            </RadzenTemplateForm>
+        </RadzenCard>
+    </RadzenColumn>
+    <RadzenColumn Size="7">
+        <RadzenCard @ref=_card Style="height:80vh; overflow:auto">
+            @((MarkupString)MarkdownToHtml(_output))
+        </RadzenCard>
+    </RadzenColumn>
+</RadzenRow>

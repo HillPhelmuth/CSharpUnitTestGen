@@ -1,0 +1,31 @@
+﻿@inherits LayoutComponentBase
+
+<RadzenLayout Style="height:99vh">
+	<RadzenHeader>
+		<RadzenRow>
+			<RadzenColumn Size="1">
+
+			</RadzenColumn>
+			<RadzenColumn Size="10">
+				<RadzenText TextAlign="TextAlign.Center" TextStyle="TextStyle.DisplayH5" Text="Csharp Unit Test Agent"></RadzenText>
+			</RadzenColumn>
+		</RadzenRow>
+	</RadzenHeader>
+
+	<RadzenBody>
+        <article class="content px-4">
+            @Body
+        </article>
+	</RadzenBody>
+</RadzenLayout>
+
+
+@code {
+	private string? divStyle;
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+		divStyle = "background-color: #f7f7f7;";
+	}
+}
