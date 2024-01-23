@@ -14,35 +14,37 @@ public partial class MessageView : ComponentBase
 
     private bool _shouldRender;
     private ElementReference _ref;
+    private int _renderAttempts = 0;
     protected override bool ShouldRender()
     {
-            return _shouldRender;
-        }
+        _renderAttempts++;
+        return _renderAttempts % 5 != 0 && _shouldRender;
+    }
 
     protected override Task OnParametersSetAsync()
     {
-            if (Message.IsActiveStreaming || string.IsNullOrEmpty(Message.Content))
-            {
-                _shouldRender = true;
-            }
-            return base.OnParametersSetAsync();
+        if (Message.IsActiveStreaming || string.IsNullOrEmpty(Message.Content))
+        {
+            _shouldRender = true;
         }
+        return base.OnParametersSetAsync();
+    }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-            if (!Message.IsActiveStreaming)
-            {
-                _shouldRender = false;
-                var appJsInterop = new AppJsInterop(JsRuntime);
-                await appJsInterop.AddCodeStyle(_ref);
-            }
-            await base.OnAfterRenderAsync(firstRender);
+        if (!Message.IsActiveStreaming)
+        {
+            _shouldRender = false;
+            var appJsInterop = new AppJsInterop(JsRuntime);
+            await appJsInterop.AddCodeStyle(_ref);
         }
+        await base.OnAfterRenderAsync(firstRender);
+    }
     private string AsHtml(string? text)
     {
-            if (text == null) return "";
-            var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
-            var result = Markdown.ToHtml(text, pipeline);
-            return result;
+        if (text == null) return "";
+        var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+        var result = Markdown.ToHtml(text, pipeline);
+        return result;
 
-        }
+    }
 }

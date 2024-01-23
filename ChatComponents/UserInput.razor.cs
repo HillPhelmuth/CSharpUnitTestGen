@@ -60,7 +60,8 @@ public enum UserInputType
 {
     Chat,
     Ask,
-    Both
+    Both,
+    TextAreaChat
 }
 
 public class UserInputRequest

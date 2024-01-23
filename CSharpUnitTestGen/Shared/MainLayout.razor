@@ -1,31 +1,28 @@
 ﻿@inherits LayoutComponentBase
 
 <RadzenLayout Style="height:99vh">
-	<RadzenHeader>
-		<RadzenRow>
-			<RadzenColumn Size="1">
-
-			</RadzenColumn>
-			<RadzenColumn Size="10">
-				<RadzenText TextAlign="TextAlign.Center" TextStyle="TextStyle.DisplayH5" Text="Csharp Unit Test Agent"></RadzenText>
-			</RadzenColumn>
-		</RadzenRow>
-	</RadzenHeader>
-
-	<RadzenBody>
-        <article class="content px-4">
-            @Body
-        </article>
-	</RadzenBody>
+    <RadzenHeader>
+        <RadzenRow>
+            <RadzenColumn Size="1">
+                <RadzenSidebarToggle Click="@(() => _sidebarExpanded = !_sidebarExpanded)" />
+            </RadzenColumn>
+            <RadzenColumn Size="10">
+                <RadzenText TextAlign="TextAlign.Center" TextStyle="TextStyle.DisplayH5" Text="Csharp Unit Test Agent"></RadzenText>
+            </RadzenColumn>
+        </RadzenRow>
+    </RadzenHeader>
+    <RadzenSidebar @bind-Expanded=_sidebarExpanded>
+        <RadzenPanelMenu>
+            <RadzenPanelMenuItem Text="Simple Test Gen" Icon="bug_report" Path=""></RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="Test Gen Agent" Icon="code" Path="agent"></RadzenPanelMenuItem>
+        </RadzenPanelMenu>
+    </RadzenSidebar>
+    <RadzenBody Style="padding-top:0">
+        <div style="height:100%" @onclick="@(() => _sidebarExpanded = false)">@Body</div>
+    </RadzenBody>
 </RadzenLayout>
 
 
 @code {
-	private string? divStyle;
-
-	protected override void OnInitialized()
-	{
-		base.OnInitialized();
-		divStyle = "background-color: #f7f7f7;";
-	}
+    private bool _sidebarExpanded = true;
 }

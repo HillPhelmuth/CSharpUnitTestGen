@@ -1,11 +1,11 @@
 ﻿<RadzenRow Style="position:absolute; bottom:2px; height:max-content; width:95%">
     <RadzenColumn Size="12" SizeLG="12">
-        <RadzenCard Style="padding-top:2px;padding-bottom:6px">
+        <RadzenCard Style="padding-top:2px;padding-bottom:2px">
             <RadzenTemplateForm Data="_requestForm" TItem="RequestForm" Submit="SubmitRequest">
                 <RadzenRow>
                     <RadzenColumn Size="@(10)">
                         
-                        @if (_requestForm.UserInputRequest.UserInputType is UserInputType.Ask or UserInputType.Both && !_requestForm.UserInputRequest.UseTextArea)
+                        @if (_requestForm.UserInputRequest.UserInputType is UserInputType.Ask or UserInputType.Both)
                         {
                             <RadzenFormField Text="Ask for Planner (optional)" Style="width: 100%">
                                 <ChildContent>
@@ -16,7 +16,7 @@
                                 </Helper>
                             </RadzenFormField>
                         }
-                        @if (_requestForm.UserInputRequest.UserInputType is UserInputType.Chat or UserInputType.Both && !_requestForm.UserInputRequest.UseTextArea)
+                        @if (_requestForm.UserInputRequest.UserInputType is UserInputType.Chat or UserInputType.Both)
                         {
                             <RadzenFormField Text="@HelperText" Style="width: 100%">
                                 <ChildContent>
@@ -27,11 +27,11 @@
                                 </Helper>
                             </RadzenFormField>
                         }
-                        @if (_requestForm.UserInputRequest.UserInputType is UserInputType.Ask or UserInputType.Both && _requestForm.UserInputRequest.UseTextArea)
+                        @if (_requestForm.UserInputRequest.UserInputType is UserInputType.TextAreaChat)
                         {
                             <RadzenFormField Text="@HelperText" Style="width: 100%">
                                 <ChildContent>
-                                    <RadzenTextArea Name="InputArea" ReadOnly="_isDisabled" Style="width: 100%; height:10rem" @bind-Value="@_requestForm.UserInputRequest.AskInput"></RadzenTextArea>
+                                    <RadzenTextArea Name="InputArea" ReadOnly="_isDisabled" Style="width: 100%; height:5rem" @bind-Value="@_requestForm.UserInputRequest.ChatInput"></RadzenTextArea>
                                 </ChildContent>
                                 <Helper>
                                     <RadzenRequiredValidator Visible="_requestForm.UserInputRequest.UseTextArea" Component="InputArea" Text="@($"{HelperText} required")"></RadzenRequiredValidator>

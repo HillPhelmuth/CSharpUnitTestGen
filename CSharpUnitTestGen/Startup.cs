@@ -1,3 +1,4 @@
+using ChatComponents;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +26,7 @@ public class Startup
     {
         services.AddWindowsFormsBlazorWebView();
         services.AddScoped<UnitTestGeneratorService>();
+        services.AddChat();
 #if DEBUG
         services.AddBlazorWebViewDeveloperTools();
 #endif

@@ -1,0 +1,10 @@
+﻿<RadzenButton Click="Reset" Text="reset" Size="ButtonSize.ExtraSmall"></RadzenButton>
+<RadzenRow>
+    <RadzenColumn>
+        <RadzenCard>
+            <ChatView Height="70vh" ResetOnClose="false" ViewId="plannerChat" @ref=_chatView></ChatView>
+        </RadzenCard>
+
+        <UserInput ButtonLabel="Send" HelperText="User Input" UserInputSubmit="HandleChatInput" IsBusy="_isBusy" UserInputType="UserInputType.TextAreaChat" CancelRequest="Cancel"></UserInput>
+    </RadzenColumn>
+</RadzenRow>

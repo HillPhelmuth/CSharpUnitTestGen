@@ -12,7 +12,7 @@ namespace CSharpUnitTestGen.Components;
 
 public partial class UnitTestGen : ComponentBase
 {
-    private ChatView? _chatView;
+    
     private RadzenCard? _card;
     private string _output = "";
     private bool _isBusy;
